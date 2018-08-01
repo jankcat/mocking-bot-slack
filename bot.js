@@ -67,7 +67,7 @@ var bot_options = {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
-    scopes: ['bot'],
+    scopes: ['bot', 'channels:history', 'chat:write:bot', 'reactions:read'],
     studio_token: process.env.studio_token,
     studio_command_uri: process.env.studio_command_uri
 };
