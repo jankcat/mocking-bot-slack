@@ -27,6 +27,13 @@ module.exports = function(controller) {
     if (reaction.reaction !== 'mocking') return;
     
     try {
+      // React to the message so no one else can trigger again
+      await promisify(bot.api.reactions.add, {
+        timestamp: reaction.item.ts,
+        channel: reaction.item.channel,
+        name: 'mocking',
+      });
+      
       const reactions = await promisify(bot.api.reactions.get, {
         timestamp: reaction.item.ts,
         channel: reaction.item.channel,
@@ -42,15 +49,6 @@ module.exports = function(controller) {
       if (!reactions.message.text.trim()) return;
       let message = reactions.message.text.trim();
       if (message.length < 4) return;
-      
-      // find mocking emoji in reactions, only respond to first mocking reaction
-      let valid = false;
-      for (const react of reactions.message.reactions) {
-        if (react.name !== 'mocking') continue;
-        if (react.count !== 1) break;
-        valid = true;
-      }
-      if (!valid) return;
       
       // Make sure the message was sent in the last day
       const yesterday = new Date();
