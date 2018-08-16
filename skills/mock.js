@@ -61,7 +61,7 @@ module.exports = function(controller) {
       
       // Get the mocker and mockee (user being mocked)
       const mocker = await promisify(bot.api.users.info, { user: reaction.user });
-      const mockee = await promisify(bot.api.users.info, { user: reaction.user });
+      const mockee = await promisify(bot.api.users.info, { user: reaction.item_user });
       if (mocker.user.is_bot || mockee.user.is_bot) return;
       
       // React to the message so no one else can trigger again
