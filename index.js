@@ -1,5 +1,6 @@
 if (!process.env.SLACK_CLIENT_ID || !process.env.SLACK_CLIENT_SECRET || !process.env.PORT) {
   usage_tip();
+  return;
 }
 
 const Botkit = require('botkit');
@@ -39,10 +40,8 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 
 function usage_tip() {
     console.log('~~~~~~~~~~');
-    console.log('Botkit Starter Kit');
     console.log('Execute your bot application like this:');
     console.log('SLACK_CLIENT_ID=<MY SLACK CLIENT ID> SLACK_CLIENT_SECRET=<MY CLIENT SECRET> PORT=3000 node bot.js');
     console.log('Get Slack app credentials here: https://api.slack.com/apps')
-    console.log('Get a Botkit Studio token here: https://studio.botkit.ai/')
     console.log('~~~~~~~~~~');
 }
