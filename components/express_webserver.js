@@ -19,9 +19,9 @@ module.exports = function(controller) {
   webserver.use(bodyParser.urlencoded({ extended: true }));
 
   // set up handlebars ready for tabs
-  webserver.engine('hbs', hbs.express4({partialsDir: '../views/partials'}));
+  webserver.engine('hbs', hbs.express4({partialsDir: __dirname + '/../views/partials'}));
   webserver.set('view engine', 'hbs');
-  webserver.set('views', '../views/');
+  webserver.set('views', __dirname + '/../views/');
   
   webserver.use(express.static('public'));
 
