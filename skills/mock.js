@@ -27,17 +27,26 @@ module.exports = function(controller) {
     if (reaction.reaction !== 'mocking') return;
     
     try {
+      const reactions = await promisify(bot.api.reactions.get, {
+        timestamp: reaction.item.ts,
+        channel: reaction.item.channel,
+        full: true,
+      });
+      // find mocking emoji in reactions, only respond to first mocking reaction
+      let valid = false;
+      for (const react of reactions.message.reactions) {
+        if (react.name !== 'mocking') continue;
+        if (react.count !== 1) break;
+        valid = true;
+        break;
+      }
+      if (!valid) return;
+      
       // React to the message so no one else can trigger again
       await promisify(bot.api.reactions.add, {
         timestamp: reaction.item.ts,
         channel: reaction.item.channel,
         name: 'mocking',
-      });
-      
-      const reactions = await promisify(bot.api.reactions.get, {
-        timestamp: reaction.item.ts,
-        channel: reaction.item.channel,
-        full: true,
       });
       
       // Ignore bots, integrations, alerts, etc.
@@ -63,13 +72,6 @@ module.exports = function(controller) {
       const mocker = await promisify(bot.api.users.info, { user: reaction.user });
       const mockee = await promisify(bot.api.users.info, { user: reaction.item_user });
       if (mocker.user.is_bot || mockee.user.is_bot) return;
-      
-      // React to the message so no one else can trigger again
-      await promisify(bot.api.reactions.add, {
-        timestamp: reaction.item.ts,
-        channel: reaction.item.channel,
-        name: 'mocking',
-      });
       
       // Fix @ everyone, here, channel
       message = message.replace(/<\!everyone>/g, '@everyone');
