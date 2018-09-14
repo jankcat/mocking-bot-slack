@@ -3,5 +3,7 @@ services:
   mocking:
     build: .
     environment:
-      - DISCORD_TOKEN
+      - PORT
+      - SLACK_CLIENT_SECRET
+      - SLACK_CLIENT_ID
     restart: unless-stopped
