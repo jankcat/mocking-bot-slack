@@ -7,4 +7,11 @@ module.exports = function(controller) {
       channel: message.channel,
     });
   });
+  
+  controller.hears('dead', message_types, function (bot, message) {
+    bot.say({
+      text: 'https://i.imgur.com/WFGswPc.png',
+      channel: message.channel,
+    });
+  });
 };
