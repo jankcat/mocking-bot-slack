@@ -3,9 +3,9 @@ services:
   mocking:
     build: .
     environment:
-      - PORT=8080
+      - PORT=8443
       - SLACK_CLIENT_SECRET
       - SLACK_CLIENT_ID
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8443:8443"
