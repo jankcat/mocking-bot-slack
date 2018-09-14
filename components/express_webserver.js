@@ -5,6 +5,13 @@ const querystring = require('querystring');
 const http = require('http');
 const hbs = require('express-hbs');
 
+const https = require('https');
+const fs = require('fs');
+const sslOptions = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
 module.exports = function(controller) {
   const app = express();
   app.use(function(req, res, next) {
@@ -25,7 +32,7 @@ module.exports = function(controller) {
   
   app.use(express.static('public'));
 
-  const server = http.createServer(app);
+  const server = https.createServer(sslOptions, app);
   server.listen(8443, null, function() {
     console.log('Express webserver configured and listening at http://localhost:8443');
   });
