@@ -9,7 +9,8 @@ const https = require('https');
 const fs = require('fs');
 const sslOptions = {
   key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
+  cert: fs.readFileSync('cert.pem'),
+  passphrase: process.env.PEM_PASS,
 };
 
 module.exports = function(controller) {

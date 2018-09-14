@@ -6,6 +6,7 @@ services:
       - PORT=8443
       - SLACK_CLIENT_SECRET
       - SLACK_CLIENT_ID
+      - PEM_PASS
     restart: unless-stopped
     ports:
       - "8443:8443"
