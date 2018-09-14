@@ -5,11 +5,6 @@ const querystring = require('querystring');
 const http = require('http');
 const hbs = require('express-hbs');
 
-const https = require('https');
-const privateKey  = fs.readFileSync('privkey.pem', 'utf8');
-const certificate = fs.readFileSync('cert.pem', 'utf8');
-const credentials = {key: privateKey, cert: certificate};
-
 module.exports = function(controller) {
   const app = express();
   app.use(function(req, res, next) {
@@ -29,12 +24,10 @@ module.exports = function(controller) {
   app.set('views', __dirname + '/../views/');
   
   app.use(express.static('public'));
-  app.get('/health-check', (req, res) => res.sendStatus(200));
 
-  //const server = http.createServer(app);
-  const server = https.createServer(credentials, app);
-  server.listen(3000, null, function() {
-    console.log('Express webserver configured and listening at http://localhost:3000');
+  const server = http.createServer(app);
+  server.listen(8080, null, function() {
+    console.log('Express webserver configured and listening at http://localhost:8080');
   });
 
   // import all the pre-defined routes that are present in /components/routes
