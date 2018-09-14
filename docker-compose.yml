@@ -10,3 +10,5 @@ services:
     restart: unless-stopped
     ports:
       - "8443:8443"
+    volumes:
+      - "./.data/filedb/"
