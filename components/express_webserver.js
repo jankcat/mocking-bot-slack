@@ -6,8 +6,8 @@ const http = require('http');
 const hbs = require('express-hbs');
 
 const https = require('https');
-const privateKey  = fs.readFileSync('server.key', 'utf8');
-const certificate = fs.readFileSync('server.crt', 'utf8');
+const privateKey  = fs.readFileSync('privkey.pem', 'utf8');
+const certificate = fs.readFileSync('cert.pem', 'utf8');
 const credentials = {key: privateKey, cert: certificate};
 
 module.exports = function(controller) {
