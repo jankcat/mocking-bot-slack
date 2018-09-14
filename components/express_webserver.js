@@ -26,8 +26,8 @@ module.exports = function(controller) {
   app.use(express.static('public'));
 
   const server = http.createServer(app);
-  server.listen(8080, null, function() {
-    console.log('Express webserver configured and listening at http://localhost:8080');
+  server.listen(8443, null, function() {
+    console.log('Express webserver configured and listening at http://localhost:8443');
   });
 
   // import all the pre-defined routes that are present in /components/routes
