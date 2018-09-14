@@ -3,22 +3,26 @@ module.exports = function(controller) {
   
   controller.hears('hummus', message_types, function (bot, message) {
     bot.say({
-      text: 'https://i.imgur.com/Tm9GN74.png',
+      text: tsUrl('https://i.imgur.com/Tm9GN74.png'),
       channel: message.channel,
     });
   });
   
   controller.hears('dead', message_types, function (bot, message) {
     bot.say({
-      text: 'https://i.imgur.com/WFGswPc.png',
+      text: tsUrl('https://i.imgur.com/WFGswPc.png'),
       channel: message.channel,
     });
   });
   
   controller.hears('hurricane', message_types, function (bot, message) {
     bot.say({
-      text: 'https://i.imgur.com/f1Wcdhq.png',
+      text: tsUrl('https://i.imgur.com/f1Wcdhq.png'),
       channel: message.channel,
     });
   });
 };
+
+function tsUrl(url) {
+  return `${url}?ts=${Date.now()}`;
+}
