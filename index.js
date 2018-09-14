@@ -6,16 +6,13 @@ if (!process.env.SLACK_CLIENT_ID || !process.env.SLACK_CLIENT_SECRET || !process
 const Botkit = require('botkit');
 const debug = require('debug')('botkit:main');
 
-const bot_options = {
-    clientId: process.env.SLACK_CLIENT_ID,
-    clientSecret: process.env.SLACK_CLIENT_SECRET,
-    scopes: ['bot', 'channels:history', 'chat:write:bot', 'reactions:read']
-};
-
-bot_options.json_file_store = './.data/db/'; // store user data in a simple JSON format
-
-// Create the Botkit controller, which controls all instances of the bot.
-const controller = Botkit.slackbot(bot_options);
+const controller = Botkit.slackbot({
+  clientId: process.env.SLACK_CLIENT_ID,
+  clientSecret: process.env.SLACK_CLIENT_SECRET,
+  scopes: ['bot', 'channels:history', 'chat:write:bot', 'reactions:read'],
+  redirectUri: 'https://www.beefcakes.club:8443/oauth',
+  json_file_store: __dirname + '/.data/filedb/',
+});
 controller.startTicking();
 
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
