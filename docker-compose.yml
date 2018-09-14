@@ -3,7 +3,9 @@ services:
   mocking:
     build: .
     environment:
-      - PORT
+      - PORT=3000
       - SLACK_CLIENT_SECRET
       - SLACK_CLIENT_ID
     restart: unless-stopped
+    ports:
+      - "3000:3000"
