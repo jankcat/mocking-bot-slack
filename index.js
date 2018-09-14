@@ -10,7 +10,7 @@ const controller = Botkit.slackbot({
   clientId: process.env.SLACK_CLIENT_ID,
   clientSecret: process.env.SLACK_CLIENT_SECRET,
   scopes: ['bot', 'channels:history', 'chat:write:bot', 'reactions:read'],
-  redirectUri: 'https://www.beefcakes.club:8443/oauth',
+  redirectUri: 'https://beefcakes.club:8443/oauth',
   json_file_store: __dirname + '/.data/filedb/',
 });
 controller.startTicking();
