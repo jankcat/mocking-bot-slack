@@ -14,4 +14,11 @@ module.exports = function(controller) {
       channel: message.channel,
     });
   });
+  
+  controller.hears('hurricane', message_types, function (bot, message) {
+    bot.say({
+      text: 'https://i.imgur.com/f1Wcdhq.png',
+      channel: message.channel,
+    });
+  });
 };
