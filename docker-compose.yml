@@ -11,4 +11,4 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - "./.data/filedb/"
+      - "/usr/src/app/.data/filedb/"
