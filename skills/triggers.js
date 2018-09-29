@@ -15,6 +15,13 @@ module.exports = function(controller) {
     });
   });
   
+  controller.hears('turing test', message_types, function (bot, message) {
+    bot.say({
+      text: tsUrl('poop'),
+      channel: message.channel,
+    });
+  });
+  
   controller.hears('hurricane', message_types, function (bot, message) {
     bot.say({
       text: tsUrl('https://i.imgur.com/f1Wcdhq.png'),
