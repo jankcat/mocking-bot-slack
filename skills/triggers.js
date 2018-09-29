@@ -17,7 +17,7 @@ module.exports = function(controller) {
   
   controller.hears('turing test', message_types, function (bot, message) {
     bot.say({
-      text: tsUrl('poop'),
+      text: 'poop',
       channel: message.channel,
     });
   });
